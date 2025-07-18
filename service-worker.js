@@ -1,10 +1,10 @@
 const CACHE_NAME = 'mediamap-v1';
 const ASSETS = [
   '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
+  'index.html',
+  'manifest.json',
+  'icon-192.png',
+  'icon-512.png',
   'https://unpkg.com/leaflet/dist/leaflet.css',
   'https://unpkg.com/leaflet/dist/leaflet.js',
   'https://cdn.tailwindcss.com'
