@@ -1,13 +1,12 @@
 const CACHE_NAME = 'mediamap-v1';
 const ASSETS = [
-  '/',
+  '/',                    // index.html
   'index.html',
   'manifest.json',
   'icon-192.png',
   'icon-512.png',
   'https://unpkg.com/leaflet/dist/leaflet.css',
-  'https://unpkg.com/leaflet/dist/leaflet.js',
-  'https://cdn.tailwindcss.com'
+  'https://unpkg.com/leaflet/dist/leaflet.js'
 ];
 
 self.addEventListener('install', event => {
@@ -21,6 +20,7 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
+  // stale‑while‑revalidate for JSON feeds
   if (url.pathname.endsWith('enriched-news.json') ||
       url.pathname.endsWith('daily-summary.json')) {
     event.respondWith(
@@ -37,6 +37,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // cache‑first for everything else
   event.respondWith(
     caches.match(event.request).then(cached =>
       cached || fetch(event.request)
