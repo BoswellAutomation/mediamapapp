@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#263FA9" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MediaMap</title>
@@ -15,6 +17,14 @@
     .searchbox-center { text-align: center; }
   </style>
 </head>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () =>
+      navigator.serviceWorker.register('/service-worker.js')
+        .catch(e => console.error('SW failed:', e))
+    );
+  }
+</script>
 <body class="bg-gray-100 text-gray-800">
   <header class="bg-white p-4 shadow text-center">
     <h1 class="text-5xl font-extrabold text-blue-800 tracking-tight mb-3">MediaMap</h1>
